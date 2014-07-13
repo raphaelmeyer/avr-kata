@@ -6,21 +6,25 @@ Feature: Toogle button
     I want a button to turn a LED on and off
     In order to impress girls
 
+Scenario: Initial state
+
+    Given the device is powered on
+    Then the LED is turned off
+
 
 Scenario: Turn LED on
 
-    Given the device is running
-    And the LED is turned off
+    Given the device is powered on
     When I press the button
-    Then the LED shall be turned on
+    Then the LED is turned on
 
 
 Scenario: Turn LED off
 
-    Given the device is running
-    And the LED is turned on
+    Given the device is powered on
     When I press the button
-    Then the LED shall be turned off
+    And I press the button again
+    Then the LED is turned off
 
 
 

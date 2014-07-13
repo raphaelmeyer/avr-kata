@@ -5,13 +5,13 @@ SUBDIRS = \
     googlemock \
     cucumber-cpp \
     tdd \
-    bdd \
-    main
+    main \
+    bdd
 
 cucumber-cpp.depends += googlemock
 tdd.depends += application googlemock
-bdd.depends += application cucumber-cpp
 main.depends += application
+bdd.depends += main cucumber-cpp
 
 # BDD target
 

@@ -11,9 +11,12 @@ SOURCES += \
 HEADERS += \
     include/application.h
 
+include(../common.pri)
+
+# AVR compilation
+
 AVR_SOURCES = SOURCES
 AVR_INCLUDES = $$join(INCLUDEPATH,'" -I "','-I "','"')
 
-include(../common.pri)
 include(../avr_lib.pri)
 
