@@ -3,7 +3,7 @@ TEMPLATE = lib
 CONFIG += staticlib
 CONFIG -= qt
 
-INCLUDEPATH += include
+INCLUDEPATH += $$PWD/include
 
 SOURCES += \
     source/application.cc
@@ -11,9 +11,9 @@ SOURCES += \
 HEADERS += \
     include/application.h
 
-include(../common.pri)
+AVR_SOURCES = SOURCES
+AVR_INCLUDES = $$join(INCLUDEPATH,'" -I "','-I "','"')
 
-# avr build
-#   QMAKE_EXTRA_COMPILERS
-# or
-#   QMAKE_EXTRA_TARGETS
+include(../common.pri)
+include(../avr_lib.pri)
+
