@@ -1,10 +1,10 @@
 #language: en
 
-Feature: Toogle button
+Feature: LED toogle button
 
-    As a geek
+    As The Cheat
     I want a button to turn a LED on and off
-    In order to impress girls
+    In order throw lightswitch raves
 
 Scenario: Initial state
 
