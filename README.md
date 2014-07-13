@@ -30,6 +30,9 @@ make flash
 // avr-gcc defines preprocessor variable __AVR
 #endif
 
+// pin and port definitions
+#include <avr/io.h>
+
 // set pin PB0 as output, PB7-PB1 as input
 DDRB = _BV(PB0);
 
