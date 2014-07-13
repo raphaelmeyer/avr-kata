@@ -25,7 +25,7 @@ make flash
 
 ## AVR GPIO cheatsheet
 
-```
+```cpp
 #ifdef __AVR
 // avr-gcc defines preprocessor variable __AVR
 #endif
