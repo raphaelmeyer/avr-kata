@@ -1,1 +1,6 @@
+# qt build directory
 build-kata-*
+
+# qt project user settings
+kata/kata.pro.user
+
