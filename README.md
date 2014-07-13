@@ -3,12 +3,12 @@
 ## Assignment
 
 Given the following hardware:
-![Schematic](https://github.com/raphaelmeyer/avr-kata/schematic.png)
+![Schematic](schematic.png)
 
 The switch _S1_ shall behave as a toggle switch to turn the _LED1_ on and off.
 
 The atmega168 has the following pinout:
-![Pin configuration](https://github.com/raphaelmeyer/avr-kata/atmega168.png)
+![Pin configuration](atmega168.png)
 
 ## Build and run
 
