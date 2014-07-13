@@ -24,7 +24,7 @@ run-bdd.commands = cd $$PWD/bdd && cucumber
 QMAKE_EXTRA_TARGETS += launch-wireserver
 QMAKE_EXTRA_TARGETS += run-bdd
 
-# Flash to hw target
+# Flash firmware to hw target
 
 flash.depends = sub-main
 flash.commands = avrdude -c usbasp -p atmega168 -U flash:w:$$OUT_PWD/main/main.hex:i
