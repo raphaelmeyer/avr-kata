@@ -31,14 +31,22 @@ struct AvrContext {
     }
 
     void set_button_pin(uint32_t value) {
+        std::lock_guard<std::mutex> lock(avr_mutex);
         avr_raise_irq(avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('B'), IOPORT_IRQ_PIN1), value);
+    }
+
+    bool led_on() const {
+        std::lock_guard<std::mutex> lock(avr_mutex);
+        avr_ioport_state_t state;
+        avr_ioctl(avr, AVR_IOCTL_IOPORT_GETSTATE('B'), &state);
+        return (state.port & 0x01);
     }
 
     avr_t * avr;
     std::string mcu_name;
     std::string elf_file;
     std::thread avr_thread;
-    std::mutex avr_mutex;
+    mutable std::mutex avr_mutex;
     bool running;
 };
 
@@ -51,8 +59,6 @@ void simavr_loop(avr_t * avr, std::mutex & mutex, bool const & running) {
         }
     }
 }
-
-//void led_hook(avr_irq_t * irq, uint32_t value, void * param) {}
 
 GIVEN("^the device is powered on$") {
     ScenarioScope<AvrContext> context;
@@ -68,11 +74,6 @@ GIVEN("^the device is powered on$") {
 
     avr_init(context->avr);
     avr_load_firmware(context->avr, &fw);
-
-//    avr_irq_register_notify(
-//                avr_io_getirq(context->avr, AVR_IOCTL_IOPORT_GETIRQ('B'), IOPORT_IRQ_PIN0),
-//                led_hook,
-//                nullptr);
 
     context->running = true;
     context->avr_thread = std::thread(
@@ -103,14 +104,7 @@ THEN("^the LED is turned (on|off)$") {
     REGEX_PARAM(std::string, led_state);
     bool const expected_led_on = (led_state == "on");
 
-    avr_ioport_state_t state;
-    avr_ioctl(context->avr, AVR_IOCTL_IOPORT_GETSTATE('B'), &state);
-
-    uint32_t const LED_PIN = 0x01;
-
-    bool const led_on = (state.port & LED_PIN);
-
-    ASSERT_THAT(led_on, Eq(expected_led_on));
+    ASSERT_THAT(context->led_on(), Eq(expected_led_on));
 }
 
 }
