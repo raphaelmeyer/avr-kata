@@ -1,5 +1,5 @@
-INCLUDEPATH += $$PWD/../cucumber-cpp/include
-DEPENDPATH += $$PWD/../cucumber-cpp/include
+INCLUDEPATH += $$PWD/../cucumber-cpp/include/
+DEPENDPATH += $$PWD/../cucumber-cpp/include/
 
 LIBS += -L$$OUT_PWD/../cucumber-cpp/
 LIBS += -lcucumber-cpp

@@ -1,5 +1,5 @@
-INCLUDEPATH += $$PWD/../application/include
-DEPENDPATH += $$PWD/../application/include
+INCLUDEPATH += $$PWD/../application/include/
+DEPENDPATH += $$PWD/../application/include/
 
 PRE_TARGETDEPS += $$OUT_PWD/../application/libapplication.a
 

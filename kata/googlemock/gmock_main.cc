@@ -33,6 +33,27 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
+class QtCreatorErrorPrinter : public ::testing::EmptyTestEventListener
+{
+    virtual void OnTestPartResult(const ::testing::TestPartResult& test_part_result)
+    {
+        if(test_part_result.failed())
+        {
+            std::cout << test_part_result.file_name() << ":";
+            std::cout << test_part_result.line_number() << ": warning: ";
+            std::istringstream summary(test_part_result.summary());
+            std::string indent = "";
+            std::string line;
+            while(std::getline(summary, line))
+            {
+                std::cout << indent << line << std::endl;
+                indent = "    ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
 // MS C++ compiler/linker has a bug on Windows (not on Windows CE), which
 // causes a link error when _tmain is defined in a static library and UNICODE
 // is enabled. For this reason instead of _tmain, main function is used on
@@ -50,5 +71,8 @@ GTEST_API_ int main(int argc, char** argv) {
   // also responsible for initializing Google Test.  Therefore there's
   // no need for calling testing::InitGoogleTest() separately.
   testing::InitGoogleMock(&argc, argv);
+
+  ::testing::UnitTest::GetInstance()->listeners().Append(new QtCreatorErrorPrinter);
+
   return RUN_ALL_TESTS();
 }

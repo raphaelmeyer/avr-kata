@@ -1,5 +1,5 @@
-INCLUDEPATH += $$PWD/../googlemock/include
-DEPENDPATH += $$PWD/../googlemock/include
+INCLUDEPATH += $$PWD/../googlemock/include/
+DEPENDPATH += $$PWD/../googlemock/include/
 
 PRE_TARGETDEPS += $$OUT_PWD/../googlemock/libgmock.a
 
