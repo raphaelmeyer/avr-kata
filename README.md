@@ -2,15 +2,41 @@
 
 ## Assignment
 
-Given the following hardware:
+The switch _S1_ shall behave as a toggle switch to turn the led _LED1_ on and off.
+
+```cucumber
+Scenario: Initial state
+
+    Given the device is powered on
+    Then the LED is turned off
+```
+
+```cucumber
+Scenario: Turn LED on
+
+    Given the device is powered on
+    When I press the button
+    Then the LED is turned on
+```
+
+```cucumber
+Scenario: Turn LED off
+
+    Given the device is powered on
+    When I press the button
+    And I press the button again
+    Then the LED is turned off
+```
+
+## Target Hardware
+
+Schematic:
 ![Schematic](schematic.png)
 
-The switch _S1_ shall behave as a toggle switch to turn the _LED1_ on and off.
-
-The atmega168 has the following pinout:
+Atmega168 pin configuration:
 ![Pin configuration](atmega168.png)
 
-## Build and run
+## Build and Run
 
 The qmake project provides the following make targets.
 
