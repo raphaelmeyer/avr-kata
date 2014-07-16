@@ -6,10 +6,12 @@ CONFIG -= qt
 INCLUDEPATH += $$PWD/include
 
 SOURCES += \
-    source/application.cc
+    source/application.cc \
+    source/digitaloutput.cc
 
 HEADERS += \
-    include/application.h
+    include/application.h \
+    include/digitaloutput.h
 
 include(../common.pri)
 
