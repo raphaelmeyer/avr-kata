@@ -2,7 +2,7 @@
 
 ## Assignment
 
-The switch _S1_ shall behave as a toggle switch to turn the led _LED1_ on and off.
+The push button _S1_ shall behave as a toggle switch to turn the led _LED1_ on and off.
 
 ```cucumber
 Scenario: Initial state
